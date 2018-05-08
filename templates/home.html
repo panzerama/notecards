@@ -1,8 +1,13 @@
-<html>
-	<head>
-		<title>Notecards</title>
-	</head>
-	<body>
-		<h1>{{message}}</h1>
-	</body>
-</html>
+{% extends 'base.html' %}
+{% block body %}
+<h1>{{message}}</h1>
+<ul>
+	{% for notecard in notecards %}
+		<li>{{notecard}} | {{ notecards[notecard] }}</li>
+	{% endfor %}
+</ul>
+<form method="post" action="new">
+    {{ form.csrf_token }}
+    {{ form.front.label }} {{ form.front(size=20) }}
+</form>
+{% endblock %}
