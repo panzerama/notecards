@@ -15,3 +15,9 @@ Roadmap
 4. filling in field creates notecard item
 5. notecard item creates link on front page
 6. notecard link takes you to display page
+
+##Todos
+
+SQLALCHEMY_TRACK_MODIFICATIONS - will be deprecated in the future, should be turned off, adds overhead
+
+Data validators
