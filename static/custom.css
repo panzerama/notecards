@@ -11,3 +11,7 @@ textarea {
 .cardcontent {
 	text-align: center;
 }
+
+.review.back {
+	visibility: hidden;
+}

@@ -1,4 +1,18 @@
 {% extends 'view_card.html' %}
 {% block review_block %}
-<a href="" class="button-primary">Show back</a>
+<span class="button button-primary" id="reveal">Show back</span>
+<h1 class="cardtitle review back">Back</h1><br/>
+<p class="cardcontent review back">{{ back }}</p>
+{% endblock %}
+
+{% block scripts %}
+<script>
+	$(document).ready(function(){
+		console.log( "ready!" );
+	    $("#reveal").click(function(){
+	    	console.log( "clicked reveal!" );
+	        $(".review.back").css("visibility", "visible");
+	    });
+	});
+</script>
 {% endblock %}

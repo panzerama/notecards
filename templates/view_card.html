@@ -3,8 +3,9 @@
 <div class="columns eight offset-by-two">
 	<h1 class="cardtitle">Front</h1><br/>
 	<p class="cardcontent">{{ front }}</p><br/>
-	{% block review_block %}{% endblock %}
-	<h1 class="cardtitle">Back</h1><br/>
-	<p class="cardcontent">{{ back }}</p>
+	{% block review_block %}
+		<h1 class="cardtitle back">Back</h1><br/>
+		<p class="cardcontent back">{{ back }}</p>
+	{% endblock %}
 </div>
 {% endblock %}

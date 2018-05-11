@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="columns ten offset-by-one">
-<h1>{{message}}</h1>
-<ul>
-	{% for notecard in notecards %}
-		<li id="{{ notecard.id }}">
-			<a href="/view/{{ notecard.id }}">{{notecard.front}}</a> |
-			<a href="/view/{{ notecard.id }}" class="button button-primary">Review</a> |
-			<a href="/review/{{ notecard.id }}" class="button">View</a>
-
-		</li>
-	{% endfor %}
-</ul>
+<div class="row">
+	<div class="columns ten">
+	<h1>{{message}}</h1>
+</div>
+{% for notecard in notecards %}
+	<div class="row">
+		<div class="cardlabel columns four">
+			<a href="/view/{{ notecard.id }}">{{notecard.front}}</a>
+		</div>	
+		<div class="cardreview columns four">
+			<a href="/review/{{ notecard.id }}" class="button button-primary">Review</a>
+		</div>	
+		<div class="cardedit columns four">
+			<a href="/edit/{{ notecard.id }}" class="button">Edit</a>
+		</div>	
+	</div>
+{% endfor %}	
 <form method="post" action="new">
     {{ form.csrf_token }}
     <b>Create a new notecard:</b><br/><br/>
