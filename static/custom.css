@@ -1,15 +1,20 @@
 
-textarea {
-	width: 100%;
-	border-radius: 0px;
-}
-
 .cardtitle {
 	text-align: center;
 }
 
 .cardcontent {
 	text-align: center;
+}
+
+.notecard-textarea {
+	width: 100%;
+	border-radius: 0px;
+}
+
+.notecard-textfield {
+	width: 100%;
+	border-radius: 0px !important;
 }
 
 .review.back {

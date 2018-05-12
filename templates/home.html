@@ -23,7 +23,7 @@
 <form method="post" action="{{ url_for('save') }}">
     {{ form.csrf_token }}
     <b>Create a new notecard:</b><br/><br/>
-    {{ form.front.label }} {{ form.front(class_="notecard-textarea", size=20) }} <br/><br/>
+    {{ form.front.label }} {{ form.front(class_="notecard-textfield", size=20) }} <br/><br/>
     {{ form.back.label }} {{ form.back(class_="notecard-textarea", size=200) }} <br/><br/>
     <input type="submit">
 </form>
