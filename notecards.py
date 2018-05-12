@@ -1,6 +1,6 @@
 """ A rudimentary notecard app """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField
 from flask_sqlalchemy import SQLAlchemy
@@ -39,32 +39,46 @@ def home():
                            notecards=notecards)
 
 
-@app.route('/new', methods=['POST'])
-def new_card():
-    """creates a new card"""
+@app.route('/save', defaults={'card_id':None}, methods=['POST'])
+@app.route('/save/<card_id>', methods=['POST'])
+def save(card_id):
+    """saves form value of card"""
     form = CardForm(request.form)
-    new_notecard = Notecard()
 
     if form.validate():
-        form.populate_obj(new_notecard)
+        if card_id:
+            notecard = Notecard.query.get(card_id)
+            form.populate_obj(notecard)
 
-    db.session.add(new_notecard)
+        else:
+            new_notecard = Notecard()
+
+            form.populate_obj(new_notecard)
+
+            db.session.add(new_notecard)
     db.session.commit()
 
     notecards = Notecard.query.all()
 
-    return render_template('home.html', message='New card added.', form=form, notecards=notecards)
+    return redirect(url_for('home')) #render_template('home.html', message='New card added.', form=form, notecards=notecards)
 
 @app.route('/review/<card_id>')
-def review_card(card_id):
+def review(card_id):
     notecard = Notecard.query.get(card_id)
     return render_template('review_card.html', front=notecard.front, back=notecard.back)
 
 @app.route('/edit/<card_id>')
-def edit_card(card_id):
+def edit(card_id):
     notecard = Notecard.query.get(card_id)
     form = CardForm()
     form.front.default = notecard.front
     form.back.default = notecard.back
     form.process()
-    return render_template('edit_card.html', form=form)
+    return render_template('edit_card.html', form=form, notecard_id=card_id)
+
+@app.route('/delete/<card_id>')
+def delete(card_id):
+    notecard = Notecard.query.get(card_id)
+    db.session.delete(notecard)
+    db.session.commit()
+    return redirect(url_for('home'))

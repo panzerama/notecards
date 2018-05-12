@@ -6,18 +6,21 @@
 </div>
 {% for notecard in notecards %}
 	<div class="row">
-		<div class="cardlabel columns four">
-			<a href="/view/{{ notecard.id }}">{{notecard.front}}</a>
+		<div class="cardlabel columns three">
+			{{notecard.front}}
 		</div>	
-		<div class="cardreview columns four">
-			<a href="/review/{{ notecard.id }}" class="button button-primary">Review</a>
+		<div class="cardreview columns three">
+			<a href="{{ url_for('review', card_id=notecard.id) }}" class="button button-primary">Review</a>
 		</div>	
-		<div class="cardedit columns four">
-			<a href="/edit/{{ notecard.id }}" class="button">Edit</a>
-		</div>	
+		<div class="cardedit columns three">
+			<a href="{{ url_for('edit', card_id=notecard.id) }}" class="button">Edit</a>
+		</div>
+		<div class="carddelete columns three">
+			<a href="{{ url_for('delete', card_id=notecard.id) }}" class="button">Delete</a>
+		</div>		
 	</div>
 {% endfor %}	
-<form method="post" action="new">
+<form method="post" action="{{ url_for('save') }}">
     {{ form.csrf_token }}
     <b>Create a new notecard:</b><br/><br/>
     {{ form.front.label }} {{ form.front(class_="notecard-textarea", size=20) }} <br/><br/>
