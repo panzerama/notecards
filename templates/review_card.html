@@ -1,8 +1,12 @@
-{% extends 'view_card.html' %}
-{% block review_block %}
-<span class="button button-primary" id="reveal">Show back</span>
-<h1 class="cardtitle review back">Back</h1><br/>
-<p class="cardcontent review back">{{ back }}</p>
+{% extends 'base.html' %}
+{% block body %}
+<div class="columns eight offset-by-two">
+	<h1 class="cardtitle">Front</h1><br/>
+	<p class="cardcontent">{{ notecard.front }}</p><br/>
+	<span class="button button-primary" id="reveal">Show back</span>
+	<h1 class="cardtitle review back">Back</h1><br/>
+	<p class="cardcontent review back">{{ notecard.back }}</p>
+</div>
 {% endblock %}
 
 {% block scripts %}

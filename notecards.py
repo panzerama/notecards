@@ -65,7 +65,7 @@ def save(card_id):
 @app.route('/review/<card_id>')
 def review(card_id):
     notecard = Notecard.query.get(card_id)
-    return render_template('review_card.html', front=notecard.front, back=notecard.back)
+    return render_template('review_card.html', notecard=notecard)
 
 @app.route('/edit/<card_id>')
 def edit(card_id):
