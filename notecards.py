@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 
-class NewCardForm(FlaskForm):
+class CardForm(FlaskForm):
     front = StringField('front')
     back = TextAreaField('back')
 
@@ -29,7 +29,7 @@ app.secret_key = b'lij8iujfase232./a/sdafi234'
 @app.route('/', methods=['GET'])
 def home():
     """ home page """
-    form = NewCardForm()
+    form = CardForm()
 
     notecards = Notecard.query.all()
 
@@ -42,22 +42,29 @@ def home():
 @app.route('/new', methods=['POST'])
 def new_card():
     """creates a new card"""
-    new_notecard = Notecard(front=request.form['front'], back=request.form['back'])
+    form = CardForm(request.form)
+    new_notecard = Notecard()
+
+    if form.validate():
+        form.populate_obj(new_notecard)
+
     db.session.add(new_notecard)
     db.session.commit()
 
-    form = NewCardForm()
     notecards = Notecard.query.all()
 
     return render_template('home.html', message='New card added.', form=form, notecards=notecards)
-
-@app.route('/view/<card_id>')
-def view_card(card_id):
-    """views a particular card """
-    notecard = Notecard.query.get(card_id)
-    return render_template('view_card.html', front=notecard.front, back=notecard.back)
 
 @app.route('/review/<card_id>')
 def review_card(card_id):
     notecard = Notecard.query.get(card_id)
     return render_template('review_card.html', front=notecard.front, back=notecard.back)
+
+@app.route('/edit/<card_id>')
+def edit_card(card_id):
+    notecard = Notecard.query.get(card_id)
+    form = CardForm()
+    form.front.default = notecard.front
+    form.back.default = notecard.back
+    form.process()
+    return render_template('edit_card.html', form=form)

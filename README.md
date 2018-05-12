@@ -22,6 +22,8 @@ Roadmap
 
 ##Todos
 
+Change the way that fields are passed: start passing objects instead of individual fields
+
 SQLALCHEMY_TRACK_MODIFICATIONS - will be deprecated in the future, should be turned off, adds overhead
 
 Data validators

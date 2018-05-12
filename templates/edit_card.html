@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body%}
+<form method="post" action="save">
+    {{ form.csrf_token }}
+    <b>Edit this notecard:</b><br/><br/>
+    {{ form.front.label }} {{ form.front(class_="notecard-textarea", size=20) }} <br/><br/>
+    {{ form.back.label }} {{ form.back(class_="notecard-textarea", size=200) }} <br/><br/>
+    <input type="submit">
+</form>
+{% endblock %}
