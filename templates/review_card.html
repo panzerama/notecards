@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="columns eight offset-by-two">
+<div class="columns eight offset-by-two cardreview">
 	<h1 class="cardtitle">Front</h1><br/>
 	<p class="cardcontent">{{ notecard.front }}</p><br/>
 	<span class="button button-primary" id="reveal">Show back</span>
@@ -15,7 +15,8 @@
 		console.log( "ready!" );
 	    $("#reveal").click(function(){
 	    	console.log( "clicked reveal!" );
-	        $(".review.back").css("visibility", "visible");
+	        //$(".review.back").css("visibility", "visible");
+	        $(".review").toggle();
 	    });
 	});
 </script>
