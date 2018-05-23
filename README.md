@@ -18,11 +18,13 @@ Roadmap
 8. track card successes or failures and assign score
 9. modulate score based on time (degrades over time)
 10. stop and polish ui
+11. consistency in layout and style
 
 
 ##Todos
 
-Change the way that fields are passed: start passing objects instead of individual fields
+fix layout for home page to acoomodate empty
+refactor templates for code repetition
 
 SQLALCHEMY_TRACK_MODIFICATIONS - will be deprecated in the future, should be turned off, adds overhead
 

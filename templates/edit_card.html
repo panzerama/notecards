@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% block body%}
-<form method="post" action="{{ url_for('save', card_id=notecard_id) }}">
-    {{ form.csrf_token }}
-    <b>Edit this notecard:</b><br/><br/>
-    {{ form.front.label }} {{ form.front(class_="notecard-textarea", size=20) }} <br/><br/>
-    {{ form.back.label }} {{ form.back(class_="notecard-textarea", size=200) }} <br/><br/>
-    <input type="submit">
-</form>
+<div class="row">
+	<div class="columns eight offset-by-two notecard">
+		<form method="post" action="{{ url_for('save', card_id=notecard_id) }}">
+		    {{ form.csrf_token }}
+		    <b>Edit this notecard:</b><br/><br/>
+		    {{ form.front.label }} {{ form.front(class_="notecard-textarea", size=20) }} <br/><br/>
+		    {{ form.back.label }} {{ form.back(class_="notecard-textarea", size=200) }} <br/><br/>
+		    <input type="submit">
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block navigation %}
+<div class="row">
+	<div class="columns eight offset-by-two">
+		<a href="{{ url_for('home') }}">Home</a>
+	</div>
+</div>	
 {% endblock %}

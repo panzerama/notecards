@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="columns eight offset-by-two cardreview">
+<div class="columns eight offset-by-two cardreview notecard">
 	<h1 class="cardtitle">Front</h1><br/>
 	<p class="cardcontent">{{ notecard.front }}</p><br/>
 	<span class="button button-primary" id="reveal">Show back</span>
@@ -9,14 +9,28 @@
 </div>
 {% endblock %}
 
+{% block navigation %}
+<div class="row">
+	<div class="columns eight offset-by-two">
+		<a href="{{ url_for('home') }}">Home</a>
+	</div>
+</div>
+{% endblock %}
+
 {% block scripts %}
 <script>
 	$(document).ready(function(){
-		console.log( "ready!" );
+		var shown = false;
 	    $("#reveal").click(function(){
-	    	console.log( "clicked reveal!" );
-	        //$(".review.back").css("visibility", "visible");
-	        $(".review").toggle();
+	    	if(!shown){ 
+	    		$(".review.back").css("visibility", "visible");
+	    		$("#reveal").text("Hide back"); 
+	    		shown = true;
+	    	} else {
+	    		$(".review.back").css("visibility", "hidden"); 
+	    		shown = false;
+	    	}
+	        
 	    });
 	});
 </script>
