@@ -14,12 +14,14 @@ db = SQLAlchemy(app)
 class CardForm(FlaskForm):
     front = StringField('front')
     back = TextAreaField('back')
+    category = StringField('category')
 
 
 class Notecard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     front = db.Column(db.String(400), unique=True, nullable=False)
     back = db.Column(db.String(400), unique=True, nullable=False)
+    category = db.Column(db.String(400), unique=False, nullable=True)
 
     def __repr__(self):
         return '<Notecard %r>' % self.front

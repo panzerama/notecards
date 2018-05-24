@@ -9,12 +9,15 @@
 		<div class="cardlabel columns three">
 			{{notecard.front}}
 		</div>	
+		<div class="cardlabel columns three">
+			{{notecard.category}}
+		</div>	
 		<div class="cardreview columns three">
 			<a href="{{ url_for('review', card_id=notecard.id) }}" class="button button-primary">Review</a>
 		</div>	
-		<div class="cardedit columns three">
+		<!-- <div class="cardedit columns three">
 			<a href="{{ url_for('edit', card_id=notecard.id) }}" class="button">Edit</a>
-		</div>
+		</div> -->
 		<div class="carddelete columns three">
 			<a href="{{ url_for('delete', card_id=notecard.id) }}" class="button">Delete</a>
 		</div>		
@@ -27,6 +30,7 @@
 		    <b>Create a new notecard:</b><br/><br/>
 		    {{ form.front.label }} {{ form.front(class_="notecard-textfield", size=20) }} <br/><br/>
 		    {{ form.back.label }} {{ form.back(class_="notecard-textarea", size=200) }} <br/><br/>
+		    {{ form.category.label }} {{ form.category(class_="notecard-textfield", size=20) }} <br/><br/>
 		    <input type="submit">
 		</form>
 	</div>

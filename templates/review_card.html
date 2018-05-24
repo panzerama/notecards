@@ -3,6 +3,7 @@
 <div class="columns eight offset-by-two cardreview notecard">
 	<h1 class="cardtitle">Front</h1><br/>
 	<p class="cardcontent">{{ notecard.front }}</p><br/>
+	<p class="cardcontent">{{ notecard.category }}</p><br/>
 	<span class="button button-primary" id="reveal">Show back</span>
 	<h1 class="cardtitle review back">Back</h1><br/>
 	<p class="cardcontent review back">{{ notecard.back }}</p>
@@ -13,6 +14,11 @@
 <div class="row">
 	<div class="columns eight offset-by-two">
 		<a href="{{ url_for('home') }}">Home</a>
+	</div>
+</div>
+<div class="row">
+	<div class="columns eight offset-by-two">
+		<a href="{{ url_for('edit', card_id=notecard.id) }}">Edit this card</a>
 	</div>
 </div>
 {% endblock %}
